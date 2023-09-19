@@ -1,0 +1,65 @@
+<%- include('./includes/head.ejs') %>
+</head>
+<body>
+    <%- include('./includes/navigation.ejs') %>
+    <main>
+      <div class="container">
+        <div class="text-center">
+            <h2>Disease's Registration Form</h2>
+        </div>
+        <div class="row justify-content-center"> 
+          <div class="col-md-6">
+              <!-- Form -->
+              <form id="myForm" action="/diseases" method="post">
+
+                  <!-- Name input -->
+                  <label for="name">Name</label>
+                  <input type="text" name="name" id="name" class="form-control" required>
+
+                  <!-- Priority input -->
+                  <label for="priority">Priority</label>
+                  <input type="number" name="priority" id="priority" value="" class="form-control" required>
+
+                  <!-- Disease input -->
+                  <label for="speciality">Speciality</label> 
+                  <input type="text" name="speciality" id="speciality" value="" class="form-control" required>
+
+                  <!-- Submit button -->
+                  <div class="text-center">
+                  <button class="btn btn-primary" type="submit">Submit</button>
+                  </div>
+              </form>
+          </div>
+        </div>
+    </div>
+
+    <!-- Table -->
+      <div class="container">
+        <div class="table-responsive-md my-3">
+          <table class="table table-bordered table-hover caption-top">
+            <caption>List of diseases</caption>
+            <thead>
+              <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Name</th>
+                <th scope="col">Priority</th>
+                <th scope="col">Specialist</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (p.length > 0) { %>
+                  <% for(let [index, {disease, priority, specialist}] of p.entries()) { %>
+                    <tr>
+                      <th scope="row"><%= index + 1 %></th>
+                      <td><%= disease %></td>
+                      <td><%= priority %></td>
+                      <td><%= specialist %></td>
+                    </tr>
+                  <% } %>
+              <% } %>   
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </main>
+<% -include('./includes/end.ejs') %>
